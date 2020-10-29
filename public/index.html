@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <meta http-equiv="X-UA-Compatible" content="ie=edge">
+       <link rel="stylesheet" href="style.css">
+       
+        <link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" rel="stylesheet">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Ranchers&display=swap" rel="stylesheet">
+<script src="jquery.pause.js"></script>
+       
+    <meta charset="UTF-8">
+  <title>Tagiron</title>
+  <style>
+    #inputmyname{display:none}
+    #chat{display:none}
+    #msglist{list-style-type:none; padding-left:1px;}
+    .msg-me{color:blue}
+    .name {font-weight:bold}
+  </style>
+  <!-- tabキー無効化 -->
+<script type="text/javascript">
+<!--
+document.onkeydown = cancel_tab;
+
+function cancel_tab(e) {
+if(e == undefined){
+if(event.keyCode==9){
+event.returnValue=false;
+return false;
+}
+} else {
+if(e.which==9)
+return false;
+}
+}
+//-->
+</script>
+</head>
+<body>
+    
+    <div id="content">
+            <div class="enemy_box">
+                <div class="enemy_card_1"></div>
+                <div class="enemy_card_2"></div> 
+                <div class="enemy_card_3"></div>
+                <div class="enemy_card_4"></div>
+                <div class="enemy_card_5"></div>           
+            </div>
+            <div class="enemy_face"><i class="fas fa-user "></i></div>
+            <div id="enemy_comment"><p></p></div>
+            <div class="memo">
+                <i class="fas fa-pencil-alt"></i>
+            </div>
+            <div class="history">
+                <i class="far fa-comments"></i>
+            </div>
+    
+    <!--－－－－－－－－－－－－－個人用－－－－－－－－－－－－－－-->
+        <div id="counter"></div>
+            
+            <div id="mask"  class="hidden"></div>
+            <section id="modal" class="hidden">  
+                <p>確認したい数字を選択してください</p>
+                <div id="select1"></div>
+                <div id="select2"></div>
+            </section>
+            <div id="question"></div>
+            <a href="#" class="answer"><p>回　答</p></a>
+                        
+                        <div id="pre_canvas">
+                            <canvas id="canvas" width="" height=""></canvas>
+                            <div><button id="clear-button">全消し</button></div>
+                                <select id="color">
+                                <option value="black" style="background-color:white;color:black" selected>black</option>
+                                <option value="red" style="background-color:red;color:black">red</option>
+                                <option value="blue" style="background-color:blue;color:black">blue</option>
+                                <option value="yellow" style="background-color:yellow;color:black">yellow</option>
+                                </select>
+                        </div>  
+          <div id="history_seat"><div id="history_seat_write"></div></div>
+            <div id="answer_seat">
+                                <div id="answer_button">
+                    <input id="btn_0" type="button" value="0" onclick="ffff(0);">
+                    <input id="btn_1" type="button" value="1" onclick="ffff(2);">
+                    <input id="btn_2" type="button" value="2" onclick="ffff(4);">
+                    <input id="btn_3" type="button" value="3" onclick="ffff(6);">
+                    <input id="btn_4" type="button" value="4" onclick="ffff(8);">
+                    <input id="btn_5" type="button" value="5" onclick="ffff(10);">
+                    <input id="btn_6" type="button" value="6" onclick="ffff(12);">
+                    <input id="btn_7" type="button" value="7" onclick="ffff(14);">
+                    <input id="btn_8" type="button" value="8" onclick="ffff(16);">
+                    <input id="btn_9" type="button" value="9" onclick="ffff(18);">
+                    <input id="btn_10" type="button" value="0" onclick="ffff(1);">
+                    <input id="btn_11" type="button" value="1" onclick="ffff(3);">
+                    <input id="btn_12" type="button" value="2" onclick="ffff(5);">
+                    <input id="btn_13" type="button" value="3" onclick="ffff(7);">
+                    <input id="btn_14" type="button" value="4" onclick="ffff(9);">
+                    <input id="btn_15" type="button" value="5" onclick="ffff(11);">
+                    <input id="btn_16" type="button" value="6" onclick="ffff(13);">
+                    <input id="btn_17" type="button" value="7" onclick="ffff(15);">
+                    <input id="btn_18" type="button" value="8" onclick="ffff(17);">
+                    <input id="btn_19" type="button" value="9" onclick="ffff(19);">
+                </div>
+                <div id="answer_boad">
+                    <div id="ans_boad_1"></div>
+                    <div id="ans_boad_2"></div>
+                    <div id="ans_boad_3"></div>
+                    <div id="ans_boad_4"></div>
+                    <div id="ans_boad_5"></div>
+                </div>
+                <input id="answer_back" type="button" value="クリア" onclick="bomb();">
+                <input id="answer_go" type="button" value="答える！" onclick="go();">
+            </div>
+            
+            <div class="ally_box">
+                <div class="ally_card_1"></div>
+                <div class="ally_card_2"></div> 
+                <div class="ally_card_3"></div>
+                <div class="ally_card_4"></div>
+                <div class="ally_card_5"></div>   
+            </div>
+            <div class="ally_face"><i class="fas fa-user"></i></div> 
+            
+            <div class="start_card">
+                <div class="start_card_enemy_1"></div>
+                <div class="start_card_enemy_2"></div>
+                <div class="start_card_enemy_3"></div>
+                <div class="start_card_enemy_4"></div>
+                <div class="start_card_enemy_5"></div>
+                <div class="start_card_ally_1"></div>
+                <div class="start_card_ally_2"></div>
+                <div class="start_card_ally_3"></div>
+                <div class="start_card_ally_4"></div>
+                <div class="start_card_ally_5"></div>
+            </div>
+
+<div id = "answer_word">回　答</div>
+<div id = "answer_card">
+　<div id = "answer_1"></div>
+　<div id = "answer_2"></div>
+　<div id = "answer_3"></div>
+　<div id = "answer_4"></div>
+　<div id = "answer_5"></div>
+</div>
+<div id="mask_A"  class="hidden">〇</div>
+<div id="mask_H"  class="hidden">×</div>
+    
+    
+    
+    <!--－－－－－－－－－－－－－個人用－－－－－－－－－－－－－－-->
+<section id="chat">
+    <form id="frm-post">
+    <span id="myname"></span>&nbsp;<input type="text" id="msg">
+    </form>
+</section>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="util.js"></script>
+<script src="app.js"></script>
+
+</div>
+</body>
+</html>
